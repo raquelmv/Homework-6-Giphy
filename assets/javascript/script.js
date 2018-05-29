@@ -1,15 +1,15 @@
 $(document).ready(function () {
 
-    //--- array of first tv shows ---//
+    
 
-    //
+    //--
     var celebritiesArray = ["Lindsey Lohan", "Brad Pitt", "Leonardo Dicaprio", "Paris Hilton", "usher", "Tupac"];
 
-    //--get and display tv giphy --//
+    //--render buttons and get objects --//
     buttonsRender();
     $(document).on("click", "button", function (event) {
         var celebrities = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q" + celebrities +
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + celebrities +
             "&api_key=xvb7euBxppSrsuhZSaD5K5rSwZGZtsOZ&limit=10";
 
         $.ajax({
