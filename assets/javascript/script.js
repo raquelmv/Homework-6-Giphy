@@ -19,6 +19,9 @@ $(document).ready(function () {
             console.log(response);
             var results = response.data;
 
+            event.preventDefault();
+            buttonsRender();
+
             for (var i = 0; i < results.length; i++) {
                 var celebrityDiv = $("<div class = 'celebrities' >").addClass("col-sm-4");
                 var p = $("<p>");
@@ -26,13 +29,16 @@ $(document).ready(function () {
                 p.text(results[i].rating);
                 t.text(results[i].title);
                 var celebrityImage = $("<img>");
+                celebrityImage.addClass("gif-image");
                 celebrityImage.attr({
                     "src": results[i].images.fixed_height.url,
                     "data-still": results[i].images.fixed_height_still.url,
                     "data-animate": results[i].images.fixed_height.url,
+                    "data-state": "animate"
                     
                 });
                 celebrityDiv.prepend(p, celebrityImage);
+                
                 $("#giphys_view").prepend(celebrityDiv);
             }
 
@@ -41,7 +47,7 @@ $(document).ready(function () {
     });
 
     //---pausing gifs with a click--//
-    $(document).on("click",  function () {
+    $(document).on("click",".gif-image", function () {
         var still = $(this).attr("data-still");
         var animate = $(this).attr("data-animate");
         var state = $(this).attr("data-state")
